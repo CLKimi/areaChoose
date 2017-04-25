@@ -1,0 +1,130 @@
+@import "init";
+
+div{
+  text-align: center;
+}
+.m-btn{
+  width: 240px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 28px;
+  padding: 0;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-top: 150px;
+  cursor: pointer;
+}
+.m-chooseContent{
+  clear: both;
+  overflow: hidden;
+  padding: 30px 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  a.active{
+    background-color: #D7D7D7;
+  }
+}
+.m-selectCity{
+  width: 300px;
+  height: 450px;
+  border: 1px solid #999999;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  p{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #999999;
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
+  }
+  .u-cityContent{
+    padding-left: 15px;
+  }
+}
+.m-treeNode>li{
+  padding-bottom: 15px;
+}
+.m-treeNode{
+  li{
+    text-align: left;
+    margin-left: 13px;
+    position: relative;
+    padding: 5px 0;
+  }
+  i{
+    display: inline-block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+  }
+  img{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: 15px;
+    top: 7px;
+    display: none;
+    cursor: pointer;
+  }
+  .up1>i,.up2>i{
+    background: url("../images/i-up.png") no-repeat;
+    left: -13px;
+    top: 8px;
+  }
+  .down1>i,.down2>i{
+    background: url("../images/i-down.png") no-repeat;
+    left: -16px;
+    top: 10px;
+  }
+  .up1 .toUp1{
+    display: none;
+  }
+  .up2 .toUp2{
+    display: none;
+  }
+}
+.m-chooseBtn{
+  width: 120px;
+  .u-selectChoose{
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    color: #0077DD;
+    cursor: pointer;
+  }
+}
+.m-bottomOption{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F6F6F6;
+  border-top: 1px solid #dddddd;
+  button{
+    height: 33px;
+    line-height: 33px;
+    width: 60px;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    margin-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .u-blue-btn{
+    background-color: #0077DD;
+    color: #ffffff;
+    border: none;
+  }
+}
+.m-outPut{
+  display: block;
+  min-height: 300px;
+  width: 80%;
+  border: none;
+  margin: 10px auto;
+}
