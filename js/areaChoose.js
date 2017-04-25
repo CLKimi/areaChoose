@@ -6,7 +6,6 @@ var chooseData = [];
 
 
 $('.j-openArea').click(function () {
-    var temp = $('#template').html();
     $.ajax({
         type: "post",
         url: "json/city.json",
@@ -19,14 +18,14 @@ $('.j-openArea').click(function () {
                 closeBtn: 0,
                 shadeClose: false,
                 area: ['1020px', 'auto'],
-                content: temp,
+                content: '<div class="m-chooseContent"><div class="m-selectCity j-wholeCity j-selecting" id="allCity"><p>可选省市区</p><div class="u-cityContent"><ul class="m-treeNode"> <li class="up1 j-father" v-for="item in data" v-bind:areaId="item.areaId"><i></i><a node="1">{{item.areaName}}</a> <ul class="toUp1"> <li class="up2 j-children" v-for="node in item.cities" v-bind:areaId="node.areaId"><i></i><a node="2">{{node.areaName}}</a> <ul class="toUp2"> <li v-for="tip in node.counties" v-bind:areaId="tip.areaId"><a node="3">{{tip.areaName}}</a> </li> </ul> </li> </ul> </li> </ul> </div> </div> <div class="m-chooseBtn"> <button class="u-selectChoose j-add">添加</button> </div> <div class="m-selectCity j-wholeCity j-delete" id="selectCity"> <p>已选省市区</p> <div class="u-cityContent"> <ul class="m-treeNode"> <li class="up1 j-father" v-for="item in data" v-bind:areaId="item.areaId"><i></i><a>{{item.areaName}}</a><img step="1" src="images/i-delete.png"> <ul class="toUp1"> <li class="up2 j-children" v-for="node in item.cities" v-bind:areaId="node.areaId"> <i></i><a>{{node.areaName}}</a><img step="2" src="images/i-delete.png"> <ul class="toUp2"> <li v-for="tip in node.counties" v-bind:areaId="tip.areaId"><a>{{tip.areaName}}</a><img step="3" src="images/i-delete.png"> </li> </ul> </li> </ul> </li> </ul> </div> </div> </div> <p class="m-bottomOption"> <button class="u-blue-btn j-sure">确认</button> <button class="j-cancel">取消</button></p>',
                 success: function () {
                     $('.j-cancel').click(function () {
                         layer.closeAll();
                     });
                     $('.j-sure').click(function () {
                         layer.closeAll();
-                        $('textarea').val(JSON.stringify(chooseData));
+                        $('.selectData').val(JSON.stringify(chooseData));
                     });
                     var whole = new Vue({
                         el: '#allCity',

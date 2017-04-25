@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: "./build",
-        filename: '[name].js',
+        filename: 'areaChoose.js',
         watch: true
     },
     module: {
@@ -33,7 +33,7 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("areaChoose.css")
     ]
 
 };
