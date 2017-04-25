@@ -7,6 +7,6 @@ require('../less/areaChoose.less');
 require('expose?$!jquery');
 require('expose?Vue!Vue');
 
-require('../js/areaChoose.js');
+require('../js/area.js');
 
 
