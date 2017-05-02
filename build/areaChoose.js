@@ -9390,7 +9390,7 @@
 	                closeBtn: 0,
 	                shadeClose: false,
 	                area: ['1020px', 'auto'],
-	                content: '<div class="m-chooseContent"><div class="m-selectCity j-wholeCity j-selecting" id="allCity"><p>可选省市区</p><div class="u-cityContent"><ul class="m-treeNode"> <li class="up1 j-father" v-for="item in data" v-bind:areaId="item.areaId"><i></i><a node="1">{{item.areaName}}</a> <ul class="toUp1"> <li class="up2 j-children" v-for="node in item.cities" v-bind:areaId="node.areaId"><i></i><a node="2">{{node.areaName}}</a> <ul class="toUp2"> <li v-for="tip in node.counties" v-bind:areaId="tip.areaId"><a node="3">{{tip.areaName}}</a> </li> </ul> </li> </ul> </li> </ul> </div> </div> <div class="m-chooseBtn"> <button class="u-selectChoose j-add">添加</button> </div> <div class="m-selectCity j-wholeCity j-delete" id="selectCity"> <p>已选省市区</p> <div class="u-cityContent"> <ul class="m-treeNode"> <li class="up1 j-father" v-for="item in data" v-bind:areaId="item.areaId"><i></i><a>{{item.areaName}}</a><img step="1" src="images/i-delete.png"> <ul class="toUp1"> <li class="up2 j-children" v-for="node in item.cities" v-bind:areaId="node.areaId"> <i></i><a>{{node.areaName}}</a><img step="2" src="images/i-delete.png"> <ul class="toUp2"> <li v-for="tip in node.counties" v-bind:areaId="tip.areaId"><a>{{tip.areaName}}</a><img step="3" src="images/i-delete.png"> </li> </ul> </li> </ul> </li> </ul> </div> </div> </div> <p class="m-bottomOption"> <button class="u-blue-btn j-sure">确认</button> <button class="j-cancel">取消</button></p>',
+	                content: '<div class="m-chooseContent"><div class="m-selectCity j-wholeCity j-selecting" id="allCity"><p>可选省市区</p><div class="u-cityContent"><ul class="m-treeNode"> <li class="up1 j-father" v-for="item in data" v-bind:areaId="item.areaId"><i></i><a node="1">{{item.areaName}}</a> <ul class="toUp1"> <li class="up2 j-children" v-for="node in item.children" v-bind:areaId="node.areaId"><i></i><a node="2">{{node.areaName}}</a> <ul class="toUp2"> <li v-for="tip in node.children" v-bind:areaId="tip.areaId"><a node="3">{{tip.areaName}}</a> </li> </ul> </li> </ul> </li> </ul> </div> </div> <div class="m-chooseBtn"> <button class="u-selectChoose j-add">添加</button> </div> <div class="m-selectCity j-wholeCity j-delete" id="selectCity"> <p>已选省市区</p> <div class="u-cityContent"> <ul class="m-treeNode"> <li class="up1 j-father" v-for="item in data" v-bind:areaId="item.areaId"><i></i><a>{{item.areaName}}</a><img step="1" src="images/i-delete.png"> <ul class="toUp1"> <li class="up2 j-children" v-for="node in item.children" v-bind:areaId="node.areaId"> <i></i><a>{{node.areaName}}</a><img step="2" src="images/i-delete.png"> <ul class="toUp2"> <li v-for="tip in node.children" v-bind:areaId="tip.areaId"><a>{{tip.areaName}}</a><img step="3" src="images/i-delete.png"> </li> </ul> </li> </ul> </li> </ul> </div> </div> </div> <p class="m-bottomOption"> <button class="u-blue-btn j-sure">确认</button> <button class="j-cancel">取消</button></p>',
 	                success: function () {
 	                    $('.j-cancel').click(function () {
 	                        layer.closeAll();
@@ -9439,18 +9439,18 @@
 	                                    var c_areaId = $(this).parent().parent().parent().attr('areaId');
 	                                    for (var j = 0; j < wholeCity.length; j++) {
 	                                        if (wholeCity[j].areaId == c_areaId) {
-	                                            addData = JSON.parse(JSON.stringify(wholeCity[j].cities));
+	                                            addData = JSON.parse(JSON.stringify(wholeCity[j].children));
 	                                            for (var i1 = 0; i1 < chooseData.length; i1++) {
 	                                                if (chooseData[i1].areaId == c_areaId) {
 	                                                    for (var k = 0; k < addData.length; k++) {
 	                                                        if (addData[k].areaId == s_areaId) {
 	                                                            var addData2 = addData[k];
-	                                                            for (var k1 = 0; k1 < chooseData[i1].cities.length; k1++) {
-	                                                                if (chooseData[i1].cities[k1].areaId == s_areaId) {
-	                                                                    chooseData[i1].cities.splice(k1, 1);
+	                                                            for (var k1 = 0; k1 < chooseData[i1].children.length; k1++) {
+	                                                                if (chooseData[i1].children[k1].areaId == s_areaId) {
+	                                                                    chooseData[i1].children.splice(k1, 1);
 	                                                                }
 	                                                            }
-	                                                            chooseData[i1].cities.push(addData2);
+	                                                            chooseData[i1].children.push(addData2);
 	                                                            choose.data = chooseData;
 	                                                        }
 	                                                    }
@@ -9463,7 +9463,7 @@
 	                                                    var nowData = {
 	                                                        areaId: c_areaId,
 	                                                        areaName: c_areaName,
-	                                                        cities: [addData2]
+	                                                        children: [addData2]
 	                                                    };
 	                                                    chooseData.push(nowData);
 	                                                    choose.data = chooseData;
@@ -9481,10 +9481,10 @@
 	                                        var checkData={
 	                                            areaId: p_areaId,
 	                                            areaName: p_areaName,
-	                                            cities: [{
+	                                            children: [{
 	                                                areaId: c_areaId,
 	                                                areaName: c_areaName,
-	                                                counties:[{
+	                                                children:[{
 	                                                    areaId: s_areaId,
 	                                                    areaName: s_areaName
 	                                                } ]
@@ -9496,18 +9496,18 @@
 	                                    else{
 	                                        for (var i = 0; i < chooseData.length; i++) {
 	                                            if (chooseData[i].areaId==p_areaId) {
-	                                                for(var j = 0; j< chooseData[i].cities.length; j++){
-	                                                    if (chooseData[i].cities[j].areaId == c_areaId) {
-	                                                        for(var k = 0; k< chooseData[i].cities[j].counties.length; k++){
-	                                                            if (chooseData[i].cities[j].counties[k].areaId == s_areaId) {
-	                                                                chooseData[i].cities[j].counties.splice(k, 1);
+	                                                for(var j = 0; j< chooseData[i].children.length; j++){
+	                                                    if (chooseData[i].children[j].areaId == c_areaId) {
+	                                                        for(var k = 0; k< chooseData[i].children[j].children.length; k++){
+	                                                            if (chooseData[i].children[j].children[k].areaId == s_areaId) {
+	                                                                chooseData[i].children[j].children.splice(k, 1);
 	                                                            }
 	                                                        }
 	                                                        var checkData={
 	                                                            areaId: s_areaId,
 	                                                            areaName: s_areaName
 	                                                        };
-	                                                        chooseData[i].cities[j].counties.push(checkData);
+	                                                        chooseData[i].children[j].children.push(checkData);
 	                                                        choose.data = chooseData;
 	                                                        return;
 	                                                    }
@@ -9515,12 +9515,12 @@
 	                                                var checkData={
 	                                                    areaId: c_areaId,
 	                                                    areaName: c_areaName,
-	                                                    counties:[{
+	                                                    children:[{
 	                                                        areaId: s_areaId,
 	                                                        areaName: s_areaName
 	                                                    } ]
 	                                                };
-	                                                chooseData[i].cities.push(checkData);
+	                                                chooseData[i].children.push(checkData);
 	                                                choose.data = chooseData;
 	                                                return;
 	                                            }
@@ -9528,10 +9528,10 @@
 	                                        var checkData={
 	                                            areaId: p_areaId,
 	                                            areaName: p_areaName,
-	                                            cities: [{
+	                                            children: [{
 	                                                areaId: c_areaId,
 	                                                areaName: c_areaName,
-	                                                counties:[{
+	                                                children:[{
 	                                                    areaId: s_areaId,
 	                                                    areaName: s_areaName
 	                                                } ]
@@ -9600,12 +9600,12 @@
 	        var c_areaId = $(this).parent().parent().parent().attr('areaId');
 	        for (var i = 0; i < chooseData.length; i++) {
 	            if(chooseData[i].areaId == c_areaId){
-	                if(chooseData[i].cities.length==1){
+	                if(chooseData[i].children.length==1){
 	                    chooseData.splice(i, 1);
 	                }else{
-	                    for (var j = 0; j < chooseData[i].cities.length; j++) {
-	                        if(chooseData[i].cities[j].areaId == s_areaId){
-	                            chooseData[i].cities.splice(j, 1);
+	                    for (var j = 0; j < chooseData[i].children.length; j++) {
+	                        if(chooseData[i].children[j].areaId == s_areaId){
+	                            chooseData[i].children.splice(j, 1);
 	                            return;
 	                        }
 	                    }
@@ -9620,26 +9620,26 @@
 	        var p_areaId = $(this).parent().parent().parent().parent().parent().attr('areaId');
 	        for (var i = 0; i < chooseData.length; i++) {
 	            if(chooseData[i].areaId == p_areaId){
-	                if(chooseData[i].cities.length==1){
-	                    if(chooseData[i].cities[0].counties.length==1){
+	                if(chooseData[i].children.length==1){
+	                    if(chooseData[i].children[0].children.length==1){
 	                        chooseData.splice(i, 1);
 	                    }else{
-	                        for (var k = 0; k < chooseData[i].cities[0].counties.length; k++) {
-	                            if(chooseData[i].cities[0].counties[k].areaId == s_areaId){
-	                                chooseData[i].cities[0].counties.splice(k, 1);
+	                        for (var k = 0; k < chooseData[i].children[0].children.length; k++) {
+	                            if(chooseData[i].children[0].children[k].areaId == s_areaId){
+	                                chooseData[i].children[0].children.splice(k, 1);
 	                                return;
 	                            }
 	                        }
 	                    }
 	                }else{
-	                    for (var j = 0; j < chooseData[i].cities.length; j++) {
-	                        if(chooseData[i].cities[j].areaId == c_areaId){
-	                            if(chooseData[i].cities[j].counties.length==1){
-	                                chooseData[i].cities.splice(j, 1);
+	                    for (var j = 0; j < chooseData[i].children.length; j++) {
+	                        if(chooseData[i].children[j].areaId == c_areaId){
+	                            if(chooseData[i].children[j].children.length==1){
+	                                chooseData[i].children.splice(j, 1);
 	                            }else{
-	                                for (var k = 0; k < chooseData[i].cities[j].counties.length; k++) {
-	                                    if(chooseData[i].cities[j].counties[k].areaId == s_areaId){
-	                                        chooseData[i].cities[j].counties.splice(k, 1);
+	                                for (var k = 0; k < chooseData[i].children[j].children.length; k++) {
+	                                    if(chooseData[i].children[j].children[k].areaId == s_areaId){
+	                                        chooseData[i].children[j].children.splice(k, 1);
 	                                        return;
 	                                    }
 	                                }

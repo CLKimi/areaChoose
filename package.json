@@ -24,7 +24,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --progress --colors --profile -w",
-    "hot":"webpack-dev-server --hot --inline"
+    "hot":"webpack-dev-server --hot --inline  --progress --port 8081  --host 192.168.1.67 "
   },
   "author": "",
   "license": "ISC"
